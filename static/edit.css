@@ -1,0 +1,282 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+.back-button {
+  position: absolute;
+  top: 15px;
+  left: 30px;
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.header {
+  font-size: 33px;
+  font-family: "Lato", serif;
+  font-weight: 600;
+  padding: 40px 10px 10px 10px;
+  text-align: center;
+  text-wrap: wrap;
+  padding-top: 40px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+  padding: 10px;
+  justify-content: center;
+  gap: 0;
+}
+
+.original-info {
+  background-color: white;
+}
+
+.original-info p {
+  font-family: "Lato", serif;
+  font-size: 20px;
+  text-wrap: wrap;
+  transition: all .3s ease;
+  padding: 20px;
+  margin: 0;
+}
+
+.edit-section {
+  background-color: #D1E7DF;
+  padding-bottom: 20px;
+  width: 97vw;
+  margin: auto;
+  border-radius: 10px;
+}
+
+.edit-section p {
+  font-size: 18px;
+  font-family: "Lato", serif;
+  text-align: center;
+  padding: 30px 40px;
+  font-weight: 400;
+}
+
+.edit-text {
+  font-size: 22px;
+  font-family: "Lato", serif;
+  text-align: center;
+  padding: 10px 20px 40px 20px;
+}
+
+.form-item {
+  font-size: 20px;
+  position: relative;
+  padding: 20px;
+  font-family: "Lato", serif;
+}
+
+.form-item input {
+  border: none;
+  border-bottom: 1px solid black;
+  outline: none;
+  font-size: 18px;
+  background-color: #D1E7DF;
+}
+
+.details {
+  position: absolute;
+  bottom: 2px;
+  font-size: 12px !important;
+  padding: 0 !important;
+  text-align: left !important;
+}
+
+.button-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  margin: auto;
+}
+
+.trash-button {
+  background-color: #f44336 !important;
+  color: white !important;
+}
+
+.arrow-button {
+  margin: auto;
+  width: fit-content;
+  height: 50px;
+  padding: 15px 30px;
+  border-radius: 30px;
+  /* background-color: whatever */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  transition: all .3s ease;
+  background-color: #B9EAAC;
+  border: 1px solid black;
+  overflow-y: hidden;
+}
+
+.arrow-button p {
+  font-family: 'Inter', sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: black;
+}
+
+.arrow-button i {
+  color: black;
+  transition: all .3s ease;
+  height: fit-content;
+  width: fit-content;
+}
+
+.arrow-button:hover {
+  transform: scale(1.03);
+}
+
+.arrow-button:hover > .fa-chevron-right {
+  transform: translateX(4px);
+}
+
+.share-box {
+  height: fit-content;
+  width: 300px;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  padding: 20px 20px;
+  border-radius: 20px;
+  border: 1px solid black;
+  transition: all .3s ease;
+  margin: 20px auto;
+  align-items: center;
+}
+
+.share-box p {
+  font-size: 20px;
+  font-family: "Lato", serif;
+  text-align: center;
+}
+
+.share-box:hover {
+  transform: scale(1.03);
+}
+
+.contact-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  width: 100%;
+  justify-content: center;
+  height: fit-content;
+  padding: 20px;
+}
+
+.contact-box {
+  font-family: "Lato", serif;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  background-color: #303030;
+  justify-content: center;
+  min-width: 350px;
+  max-width: 500px;
+  height: 150px;
+  color: white;
+  font-size: 23px;
+  font-weight: 400;
+  border-radius: 25px;
+  transition: all .3s ease;
+  padding: 0 15px;
+}
+
+.sub-contact {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.sub-text {
+  font-family: "Lato", serif;
+  font-size: 18px;
+  margin-top: 10px;
+  text-wrap: wrap;
+  text-align: center;
+  font-weight: 300;
+}
+
+.contact-box:hover {
+  transform: scale(1.03);
+  outline: 2px solid #cca300;
+}
+
+.contact-text {
+  font-size: 22px;
+  font-family: "Lato", serif;
+  text-align: center;
+  padding: 30px;
+}
+
+.footer {
+  font-family: "Lato", serif;
+  width: 100%;
+  background-color: #3A3A3A;
+  color: white;
+  padding: 40px 40px;
+  margin-top: 50px;
+}
+
+.link {
+  text-decoration: underline;
+  color: #1a73e8;
+  font-weight: 500 !important;
+}
+
+.footer h2 {
+  font-family: "Playfair Display", serif !important;
+  font-weight: 500;
+  font-size: 26px;
+  font-style: italic;
+}
+
+.footer p, .footer a {
+  font-weight: 400;
+  font-size: 20px;
+  color: white;
+}
+
+
+@media (max-width: 850px) {
+  .grid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 20px;
+  }
+  .original-info p {
+    font-family: "Lato", serif;
+    font-size: 17px;
+    text-wrap: wrap;
+    padding: 0;
+  }
+
+  .header {
+    font-size: 33px;
+    font-family: "Lato", serif;
+    font-weight: 500;
+    padding: 70px 20px 20px 20px;
+    text-align: center;
+    text-wrap: wrap;
+  }
+}

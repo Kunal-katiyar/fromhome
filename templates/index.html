@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="https://glitch.com/favicon.ico" />
+    <title>FromHome</title>
+    <link rel="stylesheet" href="/static/style.css" />
+    <script src="/static/script.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <header class="hero-section">
+      <div class="background-image"></div>
+
+      <div class="hero-content">
+        <!--<img
+          class="icon"
+          src="https://cdn.glitch.global/122131af-93a3-40f2-9eab-78f46d4e0350/picsvg_download%20(3).svg?v=1738538452930"
+          alt="Logo"
+        />-->
+        <h1 class="web-name">FromHome</h1>
+
+        <!-- Hamburger Menu (Mobile) -->
+        <div class="menu-toggle" id="mobile-menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+
+        <!-- Navigation Bar -->
+        <nav class="navigation-bar">
+          <ul>
+            <li><div class="search-bar" id="search-bar">
+
+              <i class="fa-solid fa-magnifying-glass" style="color: #000000;"></i>
+              <input type="text" id="college" name="college" placeholder="University Name..." autocomplete="off">
+
+              </div>
+            </li>
+            <li id="about-button"><a href="/about" class="active">About</a></li>
+          </ul>
+        </nav>
+      </div>
+
+    </header>
+    <div class="search-results" id="search-results">
+
+      </div>
+    <section class="info-section">
+      <div class="info-content">
+      <div class="card1">
+          <div class="card-header">
+            <img
+              src="static/images/pexels-kampus-7843972.jpg"
+            />
+          </div>
+          <div class="card-body">
+            <h2>About</h2>
+            <div class="card-info">
+              <h2>
+                FromHome, at its core, is meant to give parents a greater connection to their kids when they're hours away. We know that parents are
+                always busy, but the taste and feeling of home should never be too distant. FromHome allows parents to volunteer to send food to universities or
+                send it without having to travel, making sure homemade food is available to all.
+              </h2>
+            </div>
+            <a
+              href="/sustainability.html#timeline"
+              style="text-decoration: none"
+            >
+            </a>
+          </div>
+        </div><div class="card2">
+          <div class="card-header">
+            <img
+              src="static/images/pot-3909716_1920.jpg"
+            />
+          </div>
+          <div class="card-body">
+            <h2>How to Use</h2>
+            <div class="card-info">
+              <h2>
+                  If you're heading to the university in question, just select it from the dropdown and click "Add Trip." If you need to send something, simply tap on any available
+                  trip to register for it! You will recieve an email confirmation after submitting.
+              </h2>
+            </div>
+            <a
+              href="/sustainability.html#timeline"
+              style="text-decoration: none"
+            >
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="deliveries">
+      <p class="header-text" id="header-text">____ University</p>
+      <button class="add-button" id="add-button"><p>Add Trip</p> <i class="fa-solid fa-plus" style="color: #000000;"></i></button>
+      <div class="table-container">
+        <p class="location">Enter Location</p>
+        <table class="d-table" id="d-table">
+          <tr>
+            <th>Location</th>
+            <th>Date/Time</th>
+            <th id="more-row">Register</th>
+          </tr>
+        </table>
+      </div>
+    </section>
+    <section class="fallback-section" id="fallback-section">
+      <p class="header-text" id="header-text">____ University</p>
+      <p class="location">Enter Location</p>
+      <button class="add-button" id="add-button2"><p>Add Trip</p> <i class="fa-solid fa-plus" style="color: #000000;"></i></button>
+      <h1>No Deliveries Found</h1>
+      <p>Uh oh, it looks like there are no upcoming trips to this college that match your filters. If you're heading there soon, why not add a delivery with the <b>Add Trip</b> button above?</p>
+    </section>
+
+    <section class="footer">
+      <h2>FromHome</h2>
+      <p><a href="/about#contact-row">Contact Us</a></p>
+    </section>
+    <div class="modal" id="zip-modal">
+        <div class="zip-content" id="zip-content">
+            <i class="fa-solid fa-xmark fa-2x close-button" style="color: #000000;" id="zip-close"></i>
+            <div class="delivery-info">
+                  <div class="form-item">
+                    <label for="rname-input">Your ZIP Code: </label>
+                    <input type="text" id="zip-filter-input">
+                  </div>
+                  <div class="form-item">
+                    <label for="rphone-input">Filter by miles: </label>
+                    <input type="number" id="filter-input" value="10" step="10">
+                  </div>
+            </div>
+            <button class="arrow-button4" id="apply-filters" onclick = "">
+                Apply <span class="arrow"></span>
+            </button>
+            <p>Note: this filter will only give approximate values as zip codes cover large areas. If no trips match, increase the filter slightly
+            and check the specific start location of any resultant trips.</p>
+            <button class="arrow-button clear-button" id="clear-filters" onclick = "">
+                <p style="color: white;">Clear</p><i class="fa-solid fa-circle-xmark fa-2x" style="color: white;"></i>
+            </button>
+        </div>
+    </div>
+    <div class="modal" id="modal">
+      <div class="modal-content">
+        <i class="fa-solid fa-xmark fa-2x close-button" style="color: #000000;" id="close"></i>
+        <p class="modal-header" id="d-header">Delivery to AAAAAAAA</p>
+          <!--<p id="locationT">Location: <b>ssss</b></p>
+          <p id="dropoffT">Dropoff: <b>ssss</b></p>
+          <p id="departureT">Departure: <b>ssss</b></p>
+          <p id="arrivalT">EST Arrival: <b>ssss</b></p>
+          <p id="spotsT">Spots Open: <b>ssss</b></p>
+          <p id="nameT">Name: <b>ssss</b></p>
+          <p id="phoneT">Phone: <b>ssss</b></p>-->
+        <table class="content-table">
+          <tr id="locationT"><td><p>Location</p></td><td><b>ssss</b></td></tr>
+          <tr id="dropoffT"><td><p>Dropoff</p></td><td><b>ssss</b></td></tr>
+          <tr id="departureT"><td><p>Departure</p></td><td><b>ssss</b></td></tr>
+          <tr id="arrivalT"><td><p>EST Arrival</p></td><td><b>ssss</b></td></tr>
+          <tr id="spotsT"><td><p>Spots Open</p></td><td><b>ssss</b></td></tr>
+          <tr id="nameT"><td><p>Name</p></td><td><b>ssss</b></td></tr>
+          <tr id="phoneT"><td><p>Phone</p></td><td><b>ssss</b></td></tr>
+          <tr id="zipT"><td><p>ZIP Code</p></td><td><b>ssss</b></td></tr>
+        </table>
+        <div class="link-container">
+            <a class="link" id="link">Copy/Share Link</a>
+        </div>
+        <hr>
+        <p id="register-h">Register</p>
+        <div class="delivery-info">
+          <div class="form-item">
+            <label for="rname-input">Name: </label>
+            <input type="text" id="rname-input">
+          </div>
+          <div class="form-item">
+            <label for="rphone-input">Phone Number: </label>
+            <input type="tel" id="rphone-input" min="1">
+          </div>
+          <div class="form-item">
+            <label for="remail-input">Email: </label>
+            <input type="email" id="remail-input" min="1">
+          </div>
+        </div>
+        <button class="arrow-button4" id="register-button" onclick = "">
+              Register <span class="arrow"></span>
+            </button>
+      </div>
+    </div>
+    <div class="modal" id="add-modal">
+      <div class="modal-content">
+        <i class="fa-solid fa-xmark fa-2x close-button" style="color: #000000;" id="add-close"></i>
+        <p class="modal-header" id="c-header">Add a Trip to ___</p>
+        <div class="delivery-info">
+          <div class="form-item">
+            <label for="location-input">Start Location: </label>
+            <input type="text" id="location-input">
+          </div>
+          <div class="form-item">
+            <label for="zip-input">ZIP Code: </label>
+            <input type="text" id="zip-input">
+            <p class="details">Used to determine location</p>
+          </div>
+          <div class="form-item">
+            <label for="dropoff-input">Drop-off Location: </label>
+            <input type="text" id="dropoff-input">
+            <p class="details">Near or Inside the Campus</p>
+          </div>
+          <div class="form-item">
+            <label for="departure-input">Departure Time: </label>
+            <input type="datetime-local" id="departure-input">
+            <p class="details">Your Time Zone</p>
+          </div>
+          <div class="form-item">
+            <label for="arrival-input">Approximate Arrival: </label>
+            <input type="datetime-local" id="arrival-input">
+            <p class="details">University's Time Zone</p>
+          </div>
+          <div class="form-item">
+            <label for="spots-input">Spots: </label>
+            <input type="number" id="spots-input" min="1" value="5">
+          </div>
+          <div class="form-item">
+            <label for="name-input">Your Name: </label>
+            <input type="text" id="name-input">
+            <p class="details">First and Last</p>
+          </div>
+          <div class="form-item">
+            <label for="phone-input">Phone Number: </label>
+            <input type="tel" id="phone-input" min="1">
+          </div>
+          <div class="form-item">
+            <label for="email-input">Email: </label>
+            <input type="email" id="email-input" min="1">
+          </div>
+
+        </div>
+        <p id="disclaimer">By clicking the button below to create a delivery, you agree to the <a  href="/about#header-3">Terms of Service</a>.</p>
+        <button class="arrow-button4" id="create-button">
+          Create <span class="arrow"></span>
+        </button>
+      </div>
+    </div>
+    <div class="modal" id="confirmation-modal">
+        <div class="modal-content" id="confirmation-modal-content">
+          <i class="fa-solid fa-xmark fa-2x close-button" style="color: #000000;" id="confirm-close"></i>
+            <p class="modal-header">Thank you!</p>
+            <p class="modal-text">A confirmation email has been sent to <b id="email-confirmation">____</b> with a link to view or change the details of the submission.</p>
+            <p class="modal-text">If you entered in your email incorrectly, or need to change any information, please head to <a id="panic-link" href="">this link</a>
+            immediately in order to change it (the same link as mentioned above).</p>
+        </div>
+    </div>
+    <div class="modal" id="error-modal">
+      <div class="error-content">
+        <i class="fa-solid fa-xmark fa-xl close-button" style="color: white;" id="error-close"></i>
+        <p>Uh oh, it looks like there has been an error. Maybe you tried to access a delivery or a page that doesn't exist.</p>
+      </div>
+    </div>
+  </body>
+  <script>
+       {% if uni != "" %}
+       $(document).ready(function () {
+           start("{{uni | safe}}".replaceAll("amp;", ""));
+       });
+       {% endif %}
+       {% if view is defined %}
+        $(document).ready(function () {
+           view("{{view}}");
+        });
+       {% endif %}
+       {% if error %}
+       $(document).ready(function () {
+           document.getElementById("error-modal").style.display = "block";
+        });
+       {% endif %}
+  </script>
+</html>

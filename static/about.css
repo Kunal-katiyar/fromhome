@@ -1,0 +1,251 @@
+body {
+  font-family: "Lato", serif;
+}
+
+@keyframes color-change {
+      0% {
+        color: #FFD700; /* Starting color */
+      }
+      100% {
+        color: #B59410; /* Ending color */
+      }
+    }
+
+.stat-box {
+    display: flex;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    flex-direction: column;
+    border-radius: 10px;
+    font-size: 30px;
+    animation: color-change 3s infinite alternate;
+}
+
+.number {
+    font-size: 45px !important;
+    font-weight: 500;
+}
+
+.back-button {
+  position: absolute;
+  top: 15px;
+  left: 30px;
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.back-button p {
+  font-size: 16px;
+  color: black;
+  padding-left: 10px;
+  padding-top: 5px;
+}
+
+.content {
+  margin: 70px 8vw;
+}
+
+.title {
+  font-size: 35px;
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.section-header {
+  margin: 10px 0;
+  font-size: 26px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.section-content {
+  font-size: 18px;
+  font-weight: 400;
+  width: 80vw;
+  text-wrap: wrap;
+  line-height: 30px;
+  text-indent: 50px;
+  padding: 10px 20px;
+}
+
+.rule-headers {
+    text-align: center;
+    font-size: 18px;
+    font-weight: 400;
+    padding: 10px 0;
+}
+
+.rules-list {
+  font-size: 18px;
+  font-weight: 400;
+  width: 80vw;
+  text-wrap: wrap;
+  margin-left: 50px; /* Adjust the value as needed */
+  line-height: 30px;
+}
+
+.content-div {
+    border-radius: 10px;
+}
+
+#div-1 {
+    background-color: #e6f4f4;
+}
+
+#div-2 {
+    background-color: #e9f5e8;
+}
+
+#div-3 {
+    background-color: #f4ece6;
+}
+
+
+#header-1 {
+    color: #37837f;
+}
+
+#header-2 {
+    color: #3b8337;
+}
+
+#header-3 {
+    color: #835537;
+}
+
+.contact-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  width: 100%;
+  justify-content: center;
+  padding-top: 30px;
+}
+
+.contact-box {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  background-color: #303030;
+  justify-content: center;
+  min-width: 350px;
+  max-width: 500px;
+  height: 150px;
+  color: white;
+  font-size: 23px;
+  font-weight: 400;
+  border-radius: 25px;
+  transition: all .3s ease;
+  padding: 0 15px;
+}
+
+.sub-contact {
+  display: flex;
+  flex-direction: row;
+}
+
+.sub-text {
+  font-size: 18px;
+  margin-top: 10px;
+  text-wrap: wrap;
+  text-align: center;
+  font-weight: 300;
+}
+
+.contact-box:hover {
+  transform: scale(1.03);
+  outline: 2px solid #cca300;
+}
+
+.share-container {
+  background-color: #303030;
+  min-width: 280px;
+  max-width: 280px;
+  height: 150px;
+  color: white;
+  font-size: 25px;
+  flex: 1;
+  border-radius: 25px;
+  transition: all .3s ease;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 15px;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.share-container:hover {
+  transform: scale(1.03);
+  outline: 2px solid #cca300;
+}
+
+.contact-icon {
+  padding-right: 10px;
+}
+
+.footer {
+  font-family: "Lato", serif;
+  width: 100%;
+  background-color: #3A3A3A;
+  color: white;
+  padding: 40px 40px;
+  margin-top: 50px;
+}
+
+.link {
+  text-decoration: underline;
+  color: #1a73e8 !important;
+  font-weight: 500 !important;
+}
+
+.footer h2 {
+  font-family: "Playfair Display", serif !important;
+  font-weight: 500;
+  font-size: 26px;
+  font-style: italic;
+}
+
+.footer p, .footer a {
+  font-weight: 400;
+  font-size: 20px;
+  color: white;
+}
+
+@media (max-width: 850px) {
+    .section-content {
+      font-size: 15px;
+      font-weight: 400;
+      width: 95%;
+      margin-right: 15px;
+      text-wrap: wrap;
+      line-height: 25px;
+    }
+
+    .rules-list {
+      font-size: 15px;
+      font-weight: 400;
+      width: 95%;
+      text-wrap: wrap;
+      margin-left: 30px; /* Adjust the value as needed */
+      margin-right: 15px;
+      line-height: 25px;
+    }
+
+    .rules-list li {
+        margin-right: 15px;
+    }
+
+    .rule-headers {
+        text-align: center;
+        font-size: 16px;
+        font-weight: 400;
+    }
+}

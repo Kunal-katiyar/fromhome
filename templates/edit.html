@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="https://glitch.com/favicon.ico" />
+    <title>FromHome</title>
+    <link rel="stylesheet" href="/static/edit.css" />
+    <script src="/static/edit.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+  </head>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <body>
+    <a href="/" class="back-button"><i class="fa-solid fa-arrow-left fa-3x" style="color: #000000;"></i></a>
+    <h1 class="header">Delivery/Reservation Information</h1>
+    <p class="edit-text">Need to edit the information to your submission? Fill out the form below!</p>
+    <section class="edit-section">
+    <div class="grid">
+      <div class="form-item remove">
+        <label for="location-input">Start Location: </label>
+        <input type="text" id="location-input">
+      </div>
+      <div class="form-item remove">
+        <label for="dropoff-input">Drop-off Location: </label>
+        <input type="text" id="dropoff-input">
+        <p class="details">Near or Inside the Campus</p>
+      </div>
+      <div class="form-item remove">
+        <label for="departure-input">Departure Time: </label>
+        <input type="datetime-local" id="departure-input">
+        <p class="details">Your Time Zone</p>
+      </div>
+      <div class="form-item remove">
+        <label for="arrival-input">Approximate Arrival: </label>
+        <input type="datetime-local" id="arrival-input">
+        <p class="details">University's Time Zone</p>
+      </div>
+      <div class="form-item remove">
+        <label for="spots-input">Spots: </label>
+        <input type="number" id="spots-input" min="1" value="1">
+      </div>
+      <div class="form-item">
+        <label for="name-input">Your Name: </label>
+        <input type="text" id="name-input">
+        <p class="details">First and Last</p>
+      </div>
+      <div class="form-item">
+        <label for="phone-input">Phone Number: </label>
+        <input type="tel" id="phone-input">
+      </div>
+      <div class="form-item">
+        <label for="email-input">Email: </label>
+        <input type="email" id="email-input">
+      </div>
+      <div class="form-item remove">
+        <label for="zip-input">ZIP Code: </label>
+        <input type="text" id="zip-input">
+      </div>
+    </div>
+
+    <div class="button-row">
+      <button class="arrow-button" id="edit-button">
+        <p>Submit</p><i class="fa-solid fa-chevron-right fa-2x"></i>
+      </button>
+      <button class="arrow-button trash-button" id="trash-button">
+        <p style="color: white;">Delete</p><i class="fa-solid fa-trash fa-2x" style="color: white;"></i>
+      </button>
+    </div>
+    </section>
+    <div class="share-box remove">
+      <i class="fa-solid fa-share-from-square fa-2x" style="color: #000000;"></i>
+      <p>Share your delivery!</p>
+    </div>
+    <p class="contact-text">Again, if you have any questions:</p>
+    <div class="contact-row">
+      <div class="contact-box">
+        <div class="sub-contact">
+          <i class="fas fa-envelope contact-icon"></i>
+          <p>derpyderp2048@gmail.com</p>
+        </div>
+        <p class="sub-text">Email me with inquiries and general questions!</p>
+      </div>
+      <div class="contact-box">
+        <div class="sub-contact">
+          <i class="fas fa-phone contact-icon"></i>
+          <p>469-961-9700</p>
+        </div>
+        <p class="sub-text">Text me for feedback, reviews, or any questions!</p>
+      </div>
+    </div>
+    <section class="footer">
+      <h2>FromHome</h2>
+      <a>Contact Us</a>
+    </section>
+  </body>
+  <script>
+      {% if type == "reservation" %}
+      $(document).ready(function () {
+        getajax_res("{{edit}}");
+      });
+      {% else %}
+      $(document).ready(function () {
+        getajax_del("{{edit}}");
+      });
+      {% endif %}
+  </script>
+</html>
