@@ -210,6 +210,14 @@
   width: 90%;
   margin: auto;
   position: relative;
+
+  .location {
+      top: -30px;
+      padding: 3px 10px;
+      border: 1px solid #333;
+      border-radius: 6px;
+  }
+
 }
 
 .d-table {
@@ -224,10 +232,12 @@
   left: 2px;
   font-size: 18px;
   color: black;
+
+  transition: transform 0.3s ease-in-out;
 }
 
 .location:hover {
-  text-decoration: underline;
+  transform: scale(1.03);
 }
 
 .d-table tr:hover {
@@ -653,6 +663,9 @@ hr {
   .location {
       top: 15px;
       left: 30px;
+      padding: 3px 10px;
+      border: 1px solid #333;
+      border-radius: 6px;
   }
 
 }

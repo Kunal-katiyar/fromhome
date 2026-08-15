@@ -255,6 +255,9 @@
   color: white;
 }
 
+.phone-number {
+    color: #ADD8E6;
+}
 
 @media (max-width: 850px) {
   .grid {

@@ -219,6 +219,10 @@ body {
   color: white;
 }
 
+.phone-number {
+    color: white;
+}
+
 @media (max-width: 850px) {
     .section-content {
       font-size: 15px;
