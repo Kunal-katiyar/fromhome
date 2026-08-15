@@ -11,4 +11,6 @@ npm
 __pycache__/
 .cache/
 .virtualenvs/
+.local/
+
 !.env.example
