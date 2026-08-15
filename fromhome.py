@@ -5,12 +5,12 @@ import uuid
 from flask_sqlalchemy import SQLAlchemy
 import pgeocode
 import csv
-from emails import addEmail, addRegister, removeEmail, removeEmailIndiv, indivRemove, editEmail, editEmailIndiv, editReservationEmail
+from EmailSender import EmailSender
+import os
+from dotenv import load_dotenv
 
-'''
-TO-DO:
- - Last thing: Email confirmation system for reservations and deliveries
-'''
+ES = EmailSender()
+load_dotenv()
 
 distance = pgeocode.Nominatim('US')
 dist = pgeocode.GeoDistance('US')
@@ -29,31 +29,28 @@ with open('/home/fromhome/mysite/static/us_universities.csv', 'r') as file:
 
 
 db = mysql.connector.connect(
-  host="fromhome.mysql.pythonanywhere-services.com",
-  user="fromhome",
-  password="derp1234",
-  database="fromhome$default"
+  host=os.getenv("SQL_HOST"),
+  user=os.getenv("SQL_USER"),
+  password=os.getenv("SQL_PASSWORD"),
+  database=os.getenv("SQL_DATABASE")
 )
 
 cursor = db.cursor(buffered = True)
 #DELIVERIES: 0start, 1end, 2depart, 3reach, 4spots, 5name, 6phone, 7email, 8people, 9uuid, 10uni, 11taken, 12secret_key, 13zip_code
 #INDIVIDUALS: 0id_num, 1name, 2email, 3phone, 4parentid
-deliveries = 221
+deliveries = int(os.getenv("NUM_DELIVERIES"))
 
 app = Flask(__name__)
-app.secret_key = 'AaBbCcGg4488'
+app.secret_key = os.getenv("APP_SECRETKEY")
 app.config['SQLALCHEMY_POOL_RECYCLE'] = 270
 
 sqldb = SQLAlchemy()
-app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+mysqldb://fromhome:derp1234@fromhome.mysql.pythonanywhere-services.com/fromhome$default"
+app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("APP_SQLALCHEMY_DATABASE_URI")
 app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {'pool_size' : 100, 'pool_recycle' : 280}
 sqldb.init_app(app)
 
 @app.route('/')
 def homepage():
-    print("--------------------------------------------------------")
-    print("someone checked the site! maybe an AO, maybe a parent, maybe you...")
-    print("--------------------------------------------------------")
     db.ping(reconnect=True, attempts=1, delay=0)
     auto_clear()
     uni = ""
@@ -195,10 +192,6 @@ def page_not_found(e):
 
 # FUNCTIONS ------------------------------------------------
 
-sender_email = "fromhome.business0@gmail.com"
-sender_password = "ptqs iuix gyxw bokq"
-context = ssl.create_default_context()
-
 addCommand = "INSERT INTO DELIVERIES (start, end, depart, reach, spots, name, phone, email, people, uuid, uni, taken, secret_key, zip_code) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
 def addDeliv(data):
     id = str(uuid.uuid4())
@@ -206,7 +199,7 @@ def addDeliv(data):
     deliv = (data['start'], data['dropoff'], data['departure'], data['arrival'], data['spots'], data['name'], data['phone'], data['email'], '', id, data['uni'], 0, secret, data['zip'])
     cursor.execute(addCommand, deliv)
     db.commit()
-    addEmail(data['email'], id, secret)
+    ES.addEmail(data['email'], id, secret)
     return id, secret
 
 addVerifyCommand = "INSERT INTO VERIFY (start, end, depart, reach, spots, name, phone, email, people, uuid, uni, taken, secret_key, zip_code) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
@@ -216,7 +209,7 @@ def addVerify(data):
     deliv = (data['start'], data['dropoff'], data['departure'], data['arrival'], data['spots'], data['name'], data['phone'], data['email'], '', id, data['uni'], 0, secret, data['zip'])
     cursor.execute(addVerifyCommand, deliv)
     db.commit()
-    addEmail(data['email'], id, secret)
+    ES.addEmail(data['email'], id, secret)
     return id, secret
 
 def getDeliv(uni):
@@ -248,7 +241,7 @@ def indivDeliv(data):
     setquery = "UPDATE DELIVERIES SET people = %s WHERE uuid = %s"
     cursor.execute(setquery, (val, data['parentid']))
     db.commit()
-    addRegister(data['email'], data['parentid'], id)
+    ES.addRegister(data['email'], data['parentid'], id)
     return True
 
 def getByIDProtected(id, secret):
@@ -318,7 +311,7 @@ def delete(id, request_type):
         updatequery = "UPDATE DELIVERIES SET taken = taken - 1 WHERE uuid = %s"
         cursor.execute(updatequery, (parentid,))
         db.commit()
-        indivRemove(email, row)
+        ES.indivRemove(email, row)
     else:
         row = getByID(id)
         if row != "Not found":
@@ -328,8 +321,8 @@ def delete(id, request_type):
         cursor.execute("SELECT * FROM INDIVIDUALS WHERE parentid = %s", (id,))
         results = cursor.fetchall()
         for x in results:
-            removeEmailIndiv(x[2], row)
-        removeEmail(row[7], row)
+            ES.removeEmailIndiv(x[2], row)
+        ES.removeEmail(row[7], row)
         sql = "DELETE FROM DELIVERIES WHERE uuid = '"+id+"'"
         cursor.execute(sql)
         db.commit()
@@ -362,7 +355,7 @@ def editEntry(id, request_type, data):
         cursor.execute("SELECT * FROM INDIVIDUALS WHERE id_num = %s", (new_key,))
         row = cursor.fetchone()
         uni = getByID(row[4])[0][10]
-        editReservationEmail(data['email'], row, uni)
+        ES.editReservationEmail(data['email'], row, uni)
     else:
         row = getByID(id)
         if row != "Not found":
@@ -379,11 +372,11 @@ def editEntry(id, request_type, data):
             db.commit()
         cursor.execute("SELECT * FROM DELIVERIES WHERE uuid = %s", (id,))
         row = cursor.fetchone()
-        editEmail(row[7], row)
+        ES.editEmail(row[7], row)
         cursor.execute("SELECT * FROM INDIVIDUALS WHERE parentid = %s", (id,))
         rows = cursor.fetchall()
         for x in rows:
-            editEmailIndiv(x[2], row, x[0])
+            ES.editEmailIndiv(x[2], row, x[0])
         sql = "UPDATE DELIVERIES SET start = %s, end = %s, depart = %s, reach = %s, name = %s, phone = %s, email = %s, zip_code = %s WHERE uuid = %s"
         cursor.execute(sql, (data['location'], data['dropoff'], data['departure'], data['arrival'], data['name'], data['phone'], data['email'], data['zip'], id))
         db.commit()
