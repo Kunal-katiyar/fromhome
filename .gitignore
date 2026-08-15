@@ -12,5 +12,5 @@ __pycache__/
 .cache/
 .virtualenvs/
 .local/
-
+.ipython/
 !.env.example
