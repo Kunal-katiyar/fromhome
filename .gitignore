@@ -1,0 +1,14 @@
+.bashrc
+.env
+.lesshst
+.my.cnf
+.profile
+.pythonstartup.py
+.viminfo
+.vimrc
+README.txt
+npm
+__pycache__/
+.cache/
+.virtualenvs/
+!.env.example
