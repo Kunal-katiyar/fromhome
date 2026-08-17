@@ -137,6 +137,12 @@ ending = """
 
 class EmailSender:
 
+    """
+    Houses the email sending functions for use by various user processes, for example
+    when a user registers as a volunteer, for a delivery, etc.
+    """
+
+
     def __init__(self):
         self.sender_email = os.getenv("SENDER_EMAIL")
         print("email -------- " + self.sender_email)
@@ -150,42 +156,16 @@ class EmailSender:
         server.ehlo()
 
 
-    def verifyEmail(self, receiver_email, id, secret):
-        message = MIMEMultipart("alternative")
-        message["Subject"] = "FromHome Delivery Verification"
-        message["From"] = f"FromHome <{self.sender_email}>"
-        message["To"] = receiver_email
-        text = """\
-        Save this email for future use! If you need to cancel or modify any information; just visit
-        fromhome.pythonanywhere.com/edit/delivery/"""+id+"""/"""+secret+"""
-        Thank you so much for using FromHome!"""
-        html = header + """
-        <section class="text">
-          <h1>Delivery Confirmation</h1>
-          <p>This is simply a delivery verification email. If you did not create a delivery on the FromHome system, you can
-          delete the delivery from the link below.
-          If this was you, please click on <a href="https://fromhome.pythonanywhere.com/view/"""+id+"""">this link</a>.</p>
-          <p>Thank you so much for using FromHome!</p>
-          <a href="https://fromhome.pythonanywhere.com">
-            <button class="arrow-button" id="link">
-                <p>Explore</p><i class="fa-solid fa-chevron-right fa-2x"></i>
-            </button>
-          </a>
-        </section>
-        """ + ending
-        part1 = MIMEText(text, "plain")
-        part2 = MIMEText(html, "html")
-        message.attach(part1)
-        message.attach(part2)
-
-        with smtplib.SMTP("smtp.gmail.com", 587) as server:
-            server.starttls(context=self.context)
-            server.login(self.sender_email, self.sender_password)
-            server.sendmail(
-                self.sender_email, receiver_email, message.as_string()
-            )
-
     def addEmail(self, receiver_email, id, secret):
+        """
+        Sends an email to a user when they successfully start a volunteer delivery.
+
+        :param reciever_email: The email address of the volunteer.
+        :param id: The public ID of the delivery that is given to all users for viewing.
+        :param secret: The private ID of the delivery that is only given to the
+        driver in order to edit the delivery details.
+        """
+
         message = MIMEMultipart("alternative")
         message["Subject"] = "FromHome Delivery Confirmation"
         message["From"] = f"FromHome <{self.sender_email}>"
@@ -224,6 +204,14 @@ class EmailSender:
             )
 
     def addRegister(self, receiver_email, selfid, parent):
+        """
+        Sends an email to a user when they register for another user's delivery.
+
+        :param reciever_email: The email address of the registrant.
+        :param selfid: The individual ID of the registrant that is used for editing/deletion of the reservation.
+        :param parent: The ID of the delivery itself that is used for viewing of the delivery.
+        """
+
         message = MIMEMultipart("alternative")
         message["Subject"] = "FromHome Reservation Confirmation"
         message["From"] = f"FromHome <{self.sender_email}>"
@@ -262,6 +250,13 @@ class EmailSender:
             )
 
     def removeEmail(self, receiver_email, item):
+        """
+        Sends an email to the delivery volunteer when their delivery has been manually deleted.
+
+        :param reciever_email: The email address of the delivery volunteer.
+        :param item: The full details of the delivery that was deleted.
+        """
+
         message = MIMEMultipart("alternative")
         message["Subject"] = "Delivery Delete Confirmation"
         message["From"] = f"FromHome <{self.sender_email}>"
@@ -294,13 +289,20 @@ class EmailSender:
             )
 
     def removeEmailIndiv(self, receiver_email, item):
+        """
+        Sends an email to a delivery registrant when the delivery has been manually deleted.
+
+        :param receiver_email: The email address of the registrant.
+        :param item: The full details of the delivery that was deleted.
+        """
+
         message = MIMEMultipart("alternative")
         message["Subject"] = "Delivery Deleted Notice"
         message["From"] = f"FromHome <{self.sender_email}>"
         message["To"] = receiver_email
         text = """\
         This email is to notify that your delivery to """+item[10]+""" has been deleted by its creator. We're sorry for any inconvenience that may be caused as a result. If you need
-        to find a new one, simply head to fromhome.pythonanywhere.com to find a new one. Thank you so much for using FromHome!"""
+        to find a new one, simply head to fromhome.pythonanywhere.com. Thank you so much for using FromHome!"""
         html = header + """
         <section class="text">
           <h1>Delivery Removal</h1>
@@ -326,6 +328,13 @@ class EmailSender:
             )
 
     def indivRemove(self, receiver_email, item):
+        """
+        Sends an email to a user when their reservation has been manually deleted.
+
+        :param receiver_email: The email address of the registrant.
+        :param item: The full details of the delivery that the user has unregistered from.
+        """
+
         message = MIMEMultipart("alternative")
         message["Subject"] = "Reservation Delete Confirmation"
         message["From"] = f"FromHome <{self.sender_email}>"
@@ -358,6 +367,13 @@ class EmailSender:
             )
 
     def editEmail(self, receiver_email, item):
+        """
+        Sends a confirmation email to the delivery volunteer when they have edited the details of their delivery.
+
+        :param receiver_email: The email address of the volunteer.
+        :param item: The full details of the delivery that has been edited.
+        """
+
         message = MIMEMultipart("alternative")
         message["Subject"] = "Your Delivery has been Edited"
         message["From"] = f"FromHome <{self.sender_email}>"
@@ -401,6 +417,16 @@ class EmailSender:
             )
 
     def editEmailIndiv(self, receiver_email, item, indiv):
+        """
+        Sends an email to a delivery registrant when the details of their delivery have
+        been edited.
+
+        :param receiver_email: The email address of the registrant.
+        :param item: The full details of the delivery that has been edited.
+        :param indiv: The registrant's private reservation ID that is used for editing
+        their information and cancelling their reservation.
+        """
+
         message = MIMEMultipart("alternative")
         message["Subject"] = "Your Delivery has been Edited"
         message["From"] = f"FromHome <{self.sender_email}>"
@@ -446,12 +472,20 @@ class EmailSender:
             )
 
     def editReservationEmail(self, receiver_email, item, uni):
+        """
+        Sends an email to a delivery's registrant when they have manually edited their reservation.
+
+        :param receiver_email: The email address of the registrant.
+        :param item: The full details of the reservation.
+        :param uni: The university that the delivery is going to.
+        """
+
         message = MIMEMultipart("alternative")
         message["Subject"] = "Your Reservation has been Edited"
         message["From"] = f"FromHome <{self.sender_email}>"
         message["To"] = receiver_email
         text = """\
-        This email is to notify that the reservation to """+uni+""" you signed up for has been edited. If you want to see the new details, go to
+        This email is to confirm that the reservation to """+uni+""" you signed up for has been edited by you. If you want to see the new details, go to
         fromhome.pythonanywhere.com/edit/reservation/"""+item[4]+"""/"""+item[0]+""". Thank you so much for using FromHome!"""
         html = header + """
         <section class="text">
@@ -477,6 +511,52 @@ class EmailSender:
         part2 = MIMEText(html, "html")
         message.attach(part1)
         message.attach(part2)
+        with smtplib.SMTP("smtp.gmail.com", 587) as server:
+            server.starttls(context=self.context)
+            server.login(self.sender_email, self.sender_password)
+            server.sendmail(
+                self.sender_email, receiver_email, message.as_string()
+            )
+
+
+    def verifyEmail(self, receiver_email, id, secret):
+        """
+        Sends a verifcation email to a user when they enter a volunteer delivery.
+        (CURRENTLY NOT IN USE)
+
+        :param reciever_email: The email address of the volunteer.
+        :param id: The public ID of the delivery that is given to all users for viewing.
+        :param secret: The private ID of the delivery that is only given to the
+        driver in order to edit the delivery details.
+        """
+
+        message = MIMEMultipart("alternative")
+        message["Subject"] = "FromHome Delivery Verification"
+        message["From"] = f"FromHome <{self.sender_email}>"
+        message["To"] = receiver_email
+        text = """\
+        Save this email for future use! If you need to cancel or modify any information; just visit
+        fromhome.pythonanywhere.com/edit/delivery/"""+id+"""/"""+secret+"""
+        Thank you so much for using FromHome!"""
+        html = header + """
+        <section class="text">
+          <h1>Delivery Confirmation</h1>
+          <p>This is simply a delivery verification email. If you did not create a delivery on the FromHome system, you can
+          delete the delivery from the link below.
+          If this was you, please click on <a href="https://fromhome.pythonanywhere.com/view/"""+id+"""">this link</a>.</p>
+          <p>Thank you so much for using FromHome!</p>
+          <a href="https://fromhome.pythonanywhere.com">
+            <button class="arrow-button" id="link">
+                <p>Explore</p><i class="fa-solid fa-chevron-right fa-2x"></i>
+            </button>
+          </a>
+        </section>
+        """ + ending
+        part1 = MIMEText(text, "plain")
+        part2 = MIMEText(html, "html")
+        message.attach(part1)
+        message.attach(part2)
+
         with smtplib.SMTP("smtp.gmail.com", 587) as server:
             server.starttls(context=self.context)
             server.login(self.sender_email, self.sender_password)

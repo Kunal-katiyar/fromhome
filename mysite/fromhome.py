@@ -79,6 +79,7 @@ def addDelivery():
 
 @app.route('/getDeliveries', methods=["POST"])
 def getDelivery():
+    SQLManager.ping()
     SQLManager.auto_clear()
     data = request.get_json()
 

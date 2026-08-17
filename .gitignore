@@ -6,6 +6,7 @@
 .pythonstartup.py
 .viminfo
 .vimrc
+.joe_state
 README.txt
 npm
 __pycache__/
