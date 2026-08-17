@@ -8,7 +8,7 @@ load_dotenv()
 
 uni_names = []
 uni_links = []
-with open('/home/fromhome/mysite/static/us_universities.csv', 'r') as file:
+with open(os.getenv("UNIVERSITY_CSV_FILE"), 'r') as file:
     reader = csv.reader(file)
     header = next(reader)
     column_index = header.index('name')
