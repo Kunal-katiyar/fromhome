@@ -12,6 +12,28 @@ class SQLManager:
 
     """
     The class that manages all system SQL functions and facilitates the EmailSender class as well.
+    SQL Structure:
+    DELIVERIES:
+        0: start,
+        1: end,
+        2: depart,
+        3: reach,
+        4: spots,
+        5: name,
+        6: phone,
+        7: email,
+        8: people,
+        9: uuid,
+        10: uni,
+        11: taken,
+        12: secret_key,
+        13: zip_code
+    INDIVIDUALS:
+        0: id_num,
+        1: name,
+        2: email,
+        3: phone,
+        4: parentid
     """
 
     def __init__(self):
