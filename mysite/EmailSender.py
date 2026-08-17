@@ -300,9 +300,11 @@ class EmailSender:
         message["Subject"] = "Delivery Deleted Notice"
         message["From"] = f"FromHome <{self.sender_email}>"
         message["To"] = receiver_email
+
         text = """\
         This email is to notify that your delivery to """+item[10]+""" has been deleted by its creator. We're sorry for any inconvenience that may be caused as a result. If you need
         to find a new one, simply head to fromhome.pythonanywhere.com. Thank you so much for using FromHome!"""
+
         html = header + """
         <section class="text">
           <h1>Delivery Removal</h1>
@@ -316,10 +318,13 @@ class EmailSender:
           </a>
         </section>
         """ + ending
+
         part1 = MIMEText(text, "plain")
         part2 = MIMEText(html, "html")
+
         message.attach(part1)
         message.attach(part2)
+
         with smtplib.SMTP("smtp.gmail.com", 587) as server:
             server.starttls(context=self.context)
             server.login(self.sender_email, self.sender_password)
@@ -339,9 +344,11 @@ class EmailSender:
         message["Subject"] = "Reservation Delete Confirmation"
         message["From"] = f"FromHome <{self.sender_email}>"
         message["To"] = receiver_email
+
         text = """\
         This email is to confirm that your reservation to """+item[10]+""" has been deleted. If you had never created one, this may be someone accidentally registering one under your email
         and deleting it, in which case you should have recieved an email regarding its creation. Thank you so much for using FromHome!"""
+
         html = header + """
         <section class="text">
           <h1>Reservation Deletion</h1>
@@ -357,8 +364,10 @@ class EmailSender:
         """ + ending
         part1 = MIMEText(text, "plain")
         part2 = MIMEText(html, "html")
+
         message.attach(part1)
         message.attach(part2)
+
         with smtplib.SMTP("smtp.gmail.com", 587) as server:
             server.starttls(context=self.context)
             server.login(self.sender_email, self.sender_email)
@@ -378,8 +387,10 @@ class EmailSender:
         message["Subject"] = "Your Delivery has been Edited"
         message["From"] = f"FromHome <{self.sender_email}>"
         message["To"] = receiver_email
+
         text = """\
         This email is to confirm that your delivery to """+item[10]+""" has been edited. Don't worry: all people who signed up have been notified as well. Thank you so much for using FromHome!"""
+
         html = header + """
         <section class="text">
           <h1>Delivery Edit</h1>
@@ -405,10 +416,13 @@ class EmailSender:
           </a>
         </section>
         """ + ending
+
         part1 = MIMEText(text, "plain")
         part2 = MIMEText(html, "html")
+
         message.attach(part1)
         message.attach(part2)
+
         with smtplib.SMTP("smtp.gmail.com", 587) as server:
             server.starttls(context=self.context)
             server.login(self.sender_email, self.sender_password)
@@ -431,9 +445,11 @@ class EmailSender:
         message["Subject"] = "Your Delivery has been Edited"
         message["From"] = f"FromHome <{self.sender_email}>"
         message["To"] = receiver_email
+
         text = """\
         This email is to notify that the delivery to """+item[10]+""" you signed up for has been edited. If you want to see the new details, go to
         fromhome.pythonanywhere.com/view/"""+item[9]+""". Thank you so much for using FromHome!"""
+
         html = header + """
         <section class="text">
           <h1>Delivery Edit</h1>
@@ -460,10 +476,13 @@ class EmailSender:
           </a>
         </section>
         """ + ending
+
         part1 = MIMEText(text, "plain")
         part2 = MIMEText(html, "html")
+
         message.attach(part1)
         message.attach(part2)
+
         with smtplib.SMTP("smtp.gmail.com", 587) as server:
             server.starttls(context=self.context)
             server.login(self.sender_email, self.sender_password)
@@ -484,9 +503,11 @@ class EmailSender:
         message["Subject"] = "Your Reservation has been Edited"
         message["From"] = f"FromHome <{self.sender_email}>"
         message["To"] = receiver_email
+
         text = """\
         This email is to confirm that the reservation to """+uni+""" you signed up for has been edited by you. If you want to see the new details, go to
         fromhome.pythonanywhere.com/edit/reservation/"""+item[4]+"""/"""+item[0]+""". Thank you so much for using FromHome!"""
+
         html = header + """
         <section class="text">
           <h1>Reservation Edit</h1>
@@ -507,10 +528,13 @@ class EmailSender:
           </a>
         </section>
         """ + ending
+
         part1 = MIMEText(text, "plain")
         part2 = MIMEText(html, "html")
+
         message.attach(part1)
         message.attach(part2)
+
         with smtplib.SMTP("smtp.gmail.com", 587) as server:
             server.starttls(context=self.context)
             server.login(self.sender_email, self.sender_password)
@@ -534,10 +558,12 @@ class EmailSender:
         message["Subject"] = "FromHome Delivery Verification"
         message["From"] = f"FromHome <{self.sender_email}>"
         message["To"] = receiver_email
+
         text = """\
         Save this email for future use! If you need to cancel or modify any information; just visit
         fromhome.pythonanywhere.com/edit/delivery/"""+id+"""/"""+secret+"""
         Thank you so much for using FromHome!"""
+
         html = header + """
         <section class="text">
           <h1>Delivery Confirmation</h1>
@@ -552,8 +578,10 @@ class EmailSender:
           </a>
         </section>
         """ + ending
+
         part1 = MIMEText(text, "plain")
         part2 = MIMEText(html, "html")
+
         message.attach(part1)
         message.attach(part2)
 
