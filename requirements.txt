@@ -1,0 +1,5 @@
+python-dotenv >= 1.0.0
+mysql-connector-python >= 26.0.0
+pgeocode >= 0.5.0
+Flask >= 3.1.0
+Flask-SQLAlchemy >= 3.1.0
