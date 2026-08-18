@@ -7,7 +7,7 @@
 FromHome is a web-based college delivery system for general items, food, etc. that 
 utilizes volunteer work to create an environment that favors both parents and students.
 
-### Access the live website [here](fromhome.pythonanywhere.com).
+### Access the live website <a href="https://fromhome.pythonanywhere.com">here</a> on Pythonanywhere.
 
 # Features
 - **Up-to-date Database:** Adds deliveries to the list and clears old ones immediately in order to ensure a smooth experience
@@ -18,7 +18,7 @@ utilizes volunteer work to create an environment that favors both parents and st
 
 # Running/Installation
 
-**The site is available 24/7 [here](fromhome.pythonanywhere.com) on Pythonanywhere.**  
+**The site is available 24/7 <a href="https://fromhome.pythonanywhere.com">here</a> at fromhome.pythonanywhere.com.**
 
 You don't need to do any local installation for this; it is possible to run this project locally, but it will not be connected to the main database. Here's how to do it:
 
