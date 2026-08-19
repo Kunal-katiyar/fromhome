@@ -9,14 +9,14 @@ utilizes volunteer work to create an environment that favors both parents and st
 
 ### Access the live website <a href="https://fromhome.pythonanywhere.com">here</a> on Pythonanywhere.
 
-# Features
+# ✨ Features
 - **Up-to-date Database:** Adds deliveries to the list and clears old ones immediately in order to ensure a smooth experience
 - **ZIP Code filtering:** Allows filtering of deliveries by ZIP code so that results are more relevant
 - **Reservation system:** Runs on a first-come first-serve reservation system to avoid packed deliveries
 - **Email confirmation system:** Sends an email to your email address with details when the delivery is created, if a volunteer edits a trip you signed up for, etc.
 - **Modern, clean UI:** Utilizes a fast search button and an at-a-glance delivery table, among other smooth design elements
 
-# Running/Installation
+# 🛠️ Running/Installation
 
 **The site is available 24/7 <a href="https://fromhome.pythonanywhere.com">here</a> at fromhome.pythonanywhere.com.**
 
@@ -68,7 +68,7 @@ Note that a CSV filled with all US universities is provided, in `/mysite/static`
 python run.py
 ```
 
-# Project Structure
+# 📁 Project Structure
 
 ```text
 ├── app/
